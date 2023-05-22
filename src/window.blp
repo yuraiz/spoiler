@@ -1,0 +1,37 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $SpoilerWindow : Adw.ApplicationWindow {
+    width-request: 400;
+    height-request: 400;
+
+    DropTarget drop_target {
+        actions: copy;
+        formats: "GdkFileList";
+    }
+
+    Box {
+        orientation: vertical;
+        vexpand: true;
+
+        Adw.HeaderBar {
+            [title]
+            Adw.Bin {}
+
+            [start]
+            ToggleButton {
+                label: "Spoiler";
+                active: bind-property spoiler.hidden bidirectional;
+            }
+        }
+
+        $ComponentsSpoilerParticles spoiler {
+            vexpand: true;
+            hidden: true;
+
+            child: Picture {
+                content-fit: cover;
+            };
+        }
+    }
+}
