@@ -37,6 +37,11 @@ mod imp {
         fn constructed(&self) {
             self.parent_constructed();
 
+            self.obj().connect_close_request(|window| {
+                window.application().unwrap().quit();
+                gtk::Inhibit(true)
+            });
+
             self.drop_target.connect_drop(
                 clone!(@to-owned self as imp => @default-return false, move
                     |_, value, _, _ | {
