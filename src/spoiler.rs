@@ -11,10 +11,6 @@ static PARTICLE_TEXTURE: Lazy<gdk::Texture> = Lazy::new(|| {
 
 const BLUR_SHADER: &[u8] = r#"
 // src: https://www.shadertoy.com/view/Xltfzj
-
-precision highp float;
-precision highp sampler2D;
-uniform bool dark;
 uniform sampler2D u_texture1;
 
 void mainImage(out vec4 fragColor,
